@@ -91,10 +91,10 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
 
     ax1.legend_.remove()
     ax2.legend_.remove()
-    #ax.xaxis.set_major_formatter(FormatStrFormatter(xformat))
-    #ax.yaxis.set_major_formatter(FormatStrFormatter(yformat))
-    #ax1.yaxis.set_major_formatter(FormatStrFormatter(y2format))
-    #ax2.yaxis.set_major_formatter(FormatStrFormatter(y3format))
+    ax.xaxis.set_major_formatter(FormatStrFormatter(xformat))
+    ax.yaxis.set_major_formatter(FormatStrFormatter(yformat))
+    ax1.yaxis.set_major_formatter(FormatStrFormatter(y2format))
+    ax2.yaxis.set_major_formatter(FormatStrFormatter(y3format))
     ax.tick_params(labelsize=fontsize);ax1.tick_params(labelsize=fontsize);ax2.tick_params(labelsize=fontsize)
     
     plt.tight_layout();plt.savefig(os.path.join(figpath,figname+'.png'))
