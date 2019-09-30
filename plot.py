@@ -1,14 +1,17 @@
 import matplotlib.pyplot as plt
-
+import numpy as np
+import matplotlib.lines as mlines
+from matplotlib.ticker import FormatStrFormatter
+import os
 
 def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
-                        xvariable, xname, xunit, xformat,
+                        xvariable, xname, xunits, xformat,
                         yvariable, yname, yunits, yformat,
                         y2variable, y2name, y2units, y2format, 
-                        y3variable, yname, y3units, y3format,
+                        y3variable, y3name, y3units, y3format,
                         figpath, figname,fontsize=12,fontsizetitle=14):
 
-    fig, ax = plt.subplots(figsize=(12,9))
+    fig, ax = plt.subplots(figsize=(12,6))
 
     ax1 = ax.twinx(); ax2 = ax.twinx()    
     ax2.spines['right'].set_position(("outward",90)) 
@@ -28,8 +31,8 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
               linestyle=lstyles[i],
               marker=mstyles[i])
         i+=1
-    ax.set_xlabel(xtitle, fontsize=fontsize)
-    ax.set_ylabel(ytitle, fontsize=fontsize)
+    ax.set_xlabel(" ".join([xname,'['+xunits+']']), fontsize=fontsize)
+    ax.set_ylabel(" ".join([yname,'['+yunits+']']), fontsize=fontsize)
     ax.yaxis.label.set_color('red')
     ax.tick_params(axis='y', colors='red')
     ax.spines['left'].set_color('red')
@@ -45,8 +48,8 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
               marker=mstyles[i])
         i+=1
 
-    ax1.set_xlabel( labeldict[xvariable], fontsize=fontsize)
-    ax1.set_ylabel(labeldict[y2variable], fontsize=fontsize)
+    ax1.set_xlabel(" ".join([xname,'['+xunits+']']), fontsize=fontsize)
+    ax1.set_ylabel(" ".join([y2name,'['+y2units+']']), fontsize=fontsize)
     ax1.yaxis.label.set_color('blue')
     ax1.tick_params(axis='y', colors='blue')
     ax1.spines['right'].set_color('blue') 
@@ -61,8 +64,8 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
               linestyle=lstyles[i],
               marker=mstyles[i])
         i+=1
-    ax2.set_xlabel( labeldict[xvariable], fontsize=fontsize)
-    ax2.set_ylabel( labeldict[y3variable], fontsize=fontsize)
+    ax2.set_xlabel(" ".join([xname,'['+xunits+']']), fontsize=fontsize)
+    ax2.set_ylabel(" ".join([y3name,'['+y3units+']']), fontsize=fontsize)
     ax2.yaxis.label.set_color('green')
     ax2.tick_params(axis='y', colors='green');ax2.spines['left'].set_color('green')
     ax2.spines['left'].set_color('green')
@@ -73,7 +76,7 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
                                       groupunits]) if isinstance(x, (np.floating, np.int)) else
 			   " ".join([groupname,'=',x,
                                      groupunits]),
-                  dfplot.sort_values(groupvariable,ascending=True)[groupvariable] 
+                  df.sort_values(groupvariable,ascending=True)[groupvariable] 
                   .unique())
     handles = [mlines.Line2D([], 
                          [], 
@@ -88,10 +91,10 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
 
     ax1.legend_.remove()
     ax2.legend_.remove()
-    ax.xaxis.set_major_formatter(FormatStrFormatter(xformat))
-    ax.yaxis.set_major_formatter(FormatStrFormatter(yformat))
-    ax1.yaxis.set_major_formatter(FormatStrFormatter(y1format))
-    ax2.yaxis.set_major_formatter(FormatStrFormatter(y2format))
+    #ax.xaxis.set_major_formatter(FormatStrFormatter(xformat))
+    #ax.yaxis.set_major_formatter(FormatStrFormatter(yformat))
+    #ax1.yaxis.set_major_formatter(FormatStrFormatter(y2format))
+    #ax2.yaxis.set_major_formatter(FormatStrFormatter(y3format))
     ax.tick_params(labelsize=fontsize);ax1.tick_params(labelsize=fontsize);ax2.tick_params(labelsize=fontsize)
     
     plt.tight_layout();plt.savefig(os.path.join(figpath,figname+'.png'))
