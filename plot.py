@@ -117,6 +117,6 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
     plt.tight_layout();plt.savefig(fig_file)
     plt.close(fig)
     fconv = FormatConverter()
-    fconv.convert_to_emf(figname+".svg", figname+'.emf', figpath)
+    fconv.convert_to_wmf(figname+".svg", figname+'.wmf', figpath)
     
     

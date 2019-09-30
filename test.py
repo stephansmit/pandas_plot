@@ -9,7 +9,7 @@ plot3Yaxis(df,
                "Outflow_beta", "Rel.Flow Angle at Outlet", "Deg.", "%0.2f",
                "Outflow_alpha", "Abs. Flow Angle at Outlet", "Deg.", "%0.2f", 
                "Interface_beta", "Rel. Flow Angle at Interface", "Deg.",  "%0.2f",
-               os.getcwd(), 'test', color=False)
+               os.getcwd(), 'test', color=True)
 
 
 #print(df)
