@@ -94,8 +94,10 @@ def plot2Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
     ax1.yaxis.set_major_formatter(FormatStrFormatter(y2format))
     ax.tick_params(labelsize=fontsize);ax1.tick_params(labelsize=fontsize);
     
-    fig_file = os.path.join(figpath, figname+".svg")
-    plt.tight_layout();plt.savefig(fig_file)
+    suffix = ['.png', '.svg']
+    for s in suffix:
+        fig_file = os.path.join(figpath, figname+s)
+        plt.tight_layout();plt.savefig(fig_file)
     plt.close(fig)
     fconv = FormatConverter()
     fconv.convert_to_wmf(figname+".svg", figname+'.wmf', figpath)
@@ -208,8 +210,10 @@ def plot3Yaxis(df,      groupvariable, groupname, groupunits, groupformat,
     ax2.yaxis.set_major_formatter(FormatStrFormatter(y3format))
     ax.tick_params(labelsize=fontsize);ax1.tick_params(labelsize=fontsize);ax2.tick_params(labelsize=fontsize)
     
-    fig_file = os.path.join(figpath, figname+".svg")
-    plt.tight_layout();plt.savefig(fig_file)
+    suffix = ['.png', '.svg']
+    for s in suffix:
+        fig_file = os.path.join(figpath, figname+s)
+        plt.tight_layout();plt.savefig(fig_file)
     plt.close(fig)
     fconv = FormatConverter()
     fconv.convert_to_wmf(figname+".svg", figname+'.wmf', figpath)
