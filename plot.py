@@ -1,4 +1,7 @@
-from convert_format.convert import *
+try:
+    from .convert_format.convert import *
+except:
+    from convert_format.convert import *
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.lines as mlines
